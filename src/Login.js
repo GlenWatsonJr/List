@@ -13,7 +13,7 @@ function Login() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        navigate("/user");
+        navigate("/");
       })
       .catch((error) => alert(error.message));
   };
@@ -44,10 +44,13 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit" onClick={signIn} className="login_signinButton">
+          <button type="submit" onClick={signIn} className="login__signinButton">
             Sign In
           </button>
         </form>
+      </div>
+      <div className="login__example">
+        <p>Test account: test1234@test.com password: 123456</p>
       </div>
     </div>
   );

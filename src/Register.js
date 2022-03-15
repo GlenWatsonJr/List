@@ -16,7 +16,7 @@ function Register() {
       .then((auth) => {
         console.log(auth);
         if (auth) {
-          navigate("/user");
+          navigate("/");
         }
       })
       .catch(error => alert(error.message)) 

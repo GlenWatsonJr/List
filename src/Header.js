@@ -22,7 +22,7 @@ function Header() {
       
       <div className="header__user">
         <PersonIcon className="header__userIcon" />
-        <h3>{user ? user.email : 'Sign in'}</h3>
+        <h3>{user ? user?.email : 'Please Sign in'}</h3>
       </div>
       
       

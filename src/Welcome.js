@@ -1,7 +1,21 @@
 import React from "react";
+import { useStateValue } from "./StateProvider";
 import "./Welcome.css";
+import Menu from "./Menu";
+import Body from "./Body";
 
 function Welcome() {
+  const [{user}, dispatch] = useStateValue();
+
+  if (user) {
+    return(
+      <div>
+        <Menu />
+        <Body />
+      </div>
+    );
+
+  }else{
   return (
     <div className="welcome">
       <div className="welcome__container">
@@ -16,8 +30,12 @@ function Welcome() {
         </form>
 
       </div>
+      <div className="welcome__example">
+      <p>Test account: test1234@test.com password: 123456</p>
+      </div>
     </div>
   );
+  }
 }
 
 export default Welcome;
