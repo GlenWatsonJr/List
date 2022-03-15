@@ -27,6 +27,10 @@ function App() {
       }
     });
 
+    dispatch({
+      type: "SORT_LIST"
+    });
+
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({

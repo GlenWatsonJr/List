@@ -25,9 +25,9 @@ function List() {
       
 
       {dataList.map((item) => (
-
-               
+      
         <ListItems
+        item={item}
         id={item.id}
         listItem={item.listItem}
         priority={Number(item.listPriority)}

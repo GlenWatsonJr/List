@@ -7,14 +7,15 @@ import { db } from "./firebase";
 function Form() {
   const [{ dataList, user }, dispatch] = useStateValue();
   const { register, handleSubmit } = useForm();
-  const listRef = db.ref("Lists");
-  const newListRef = listRef.push();
+  const listRef = db.ref();
+
 
   const onSubmit = (data) => {
-    data["id"] = Date.now();
+    const id = Date.now();
+    data["id"] = id;
     data["user"] = user.email;
     data["completed"] = false;
-    newListRef.set(data);
+    listRef.child("Lists").child(id).set(data);
     dispatch({
       type: "ADD_TO_LIST",
       item: data,

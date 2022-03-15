@@ -1,13 +1,15 @@
 import React from "react";
 import "./ListItems.css";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
+import { db } from "./firebase";
 
-function ListItems({ id, listItem, priority, dueDate }) {
+function ListItems({ item, id, listItem, priority, dueDate }) {
   const [{dataList}, dispatch] = useStateValue();
 
   const removeFromList = () => {
+    const listRef = db.ref("Lists").child(item.id);
+    listRef.remove();
     dispatch({
       type: 'REMOVE_FROM_LIST',
       id:id
