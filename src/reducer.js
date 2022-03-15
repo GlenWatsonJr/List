@@ -11,6 +11,13 @@ const reducer = (state, action) => {
         ...state,
         dataList: [...state.dataList, action.item],
       };
+    case "REMOVE_FROM_LIST":
+      return{ 
+        ...state, 
+        dataList: state.dataList.filter(
+          item => item.id !== action.id)
+        }
+
 
     case "SORT_LIST":
       return {

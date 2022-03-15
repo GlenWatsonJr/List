@@ -8,8 +8,9 @@ import { useDisplay, useDisplayToggle } from "./DisplayContext";
 
 function List() {
   //for sending the data to the datalayer
-  const [{ dataList }, dispatch] = useStateValue();
+  const [{ dataList, user }, dispatch] = useStateValue();
 
+ 
   console.log(dataList);
 
   //hooks for displaying and hiding the form
@@ -24,11 +25,15 @@ function List() {
       
 
       {dataList.map((item) => (
+
+               
         <ListItems
-          listItem={item.listItem}
-          priority={Number(item.listPriority)}
-          dueDate={item.listDueDate}
-        />
+        id={item.id}
+        listItem={item.listItem}
+        priority={Number(item.listPriority)}
+        dueDate={item.listDueDate}
+      />
+             
       ))}
 
       <div className="list__add">

@@ -19,3 +19,9 @@
 .listItem__dueDate {
   padding-left: 20px;
 }
+
+.listItem__delete{
+  position: absolute;
+  right: 20%;
+  color: rgb(1, 145, 218);
+}

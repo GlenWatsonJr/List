@@ -2,12 +2,19 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useStateValue } from "./StateProvider";
 import "./Form.css";
+import { db } from "./firebase";
 
 function Form() {
-  const [{ dataList }, dispatch] = useStateValue();
+  const [{ dataList, user }, dispatch] = useStateValue();
   const { register, handleSubmit } = useForm();
+  const listRef = db.ref("Lists");
+  const newListRef = listRef.push();
 
   const onSubmit = (data) => {
+    data["id"] = Date.now();
+    data["user"] = user.email;
+    data["completed"] = false;
+    newListRef.set(data);
     dispatch({
       type: "ADD_TO_LIST",
       item: data,
