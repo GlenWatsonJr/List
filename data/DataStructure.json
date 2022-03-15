@@ -1,0 +1,9 @@
+{
+    "id":"itemID",
+    "user":"User",
+    "listId": "What List User is on",
+    "listItem": "List Content",
+    "listPriority": "Priority Number",
+    "dateCreated": "Creation Date",
+    "listDueDate": "Date user has set to get done"
+}

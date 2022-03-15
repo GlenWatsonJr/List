@@ -1,0 +1,34 @@
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(195, 227, 255);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__logo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 10px;
+}
+
+.header__user {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  padding-right: 20px;
+  align-items: center;
+}
+
+.header__user > h3 {
+  color: black;
+  font-size: 16px;
+}
+
+.header__userIcon {
+  color: rgb(1, 145, 218);
+  padding-right: 10px;
+}

@@ -1,0 +1,26 @@
+.welcome {
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: cemter;
+}
+
+.welcome__container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.welcome__button {
+    width: 200px;
+    height:30px;
+  background: rgb(1, 145, 218);
+  color: white;
+  margin-bottom: 20px;
+}

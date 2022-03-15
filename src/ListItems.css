@@ -1,0 +1,21 @@
+.listItems {
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  border-bottom-style: solid;
+  border-color: lightgrey;
+  border-width: 1px;
+}
+
+.listItem__label {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.listItem__listSmall {
+  display: flex;
+  flex-direction: row;
+}
+
+.listItem__dueDate {
+  padding-left: 20px;
+}
