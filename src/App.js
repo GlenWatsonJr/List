@@ -5,18 +5,27 @@ import Login from "./Login";
 import Register from "./Register";
 import Body from "./Body";
 import Menu from "./Menu";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { db } from "./firebase";
+import NewList from "./NewList";
+
 
 //This divides the elements into paths
 function App() {
-  const [{ dataList }, dispatch] = useStateValue();
+  const [{dataList, lists}, dispatch] = useStateValue();
 
-  useEffect(() => {
+
+  useEffect(() => { 
     const listRef = db.ref("Lists");
+    const listNameRef = db.ref("ListNames");
+
     listRef.on("value", (snapshot) => {
       const lists = snapshot.val();
       for (let element in lists) {
@@ -27,8 +36,14 @@ function App() {
       }
     });
 
-    dispatch({
-      type: "SORT_LIST"
+    listNameRef.on("value", (snapshot) => {
+      const listNames = snapshot.val();
+      for (let element in listNames) {
+        dispatch({
+          type: "CREATE_LIST",
+          list: listNames[element],
+        });
+      }
     });
 
     auth.onAuthStateChanged((authUser) => {
@@ -44,6 +59,8 @@ function App() {
         });
       }
     });
+
+  
   }, []);
 
   return (
@@ -52,6 +69,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/create" element={<Register />}></Route>
+          <Route path="/new" element={[<Header />, <Menu />, <NewList />]}></Route>
           <Route
             path="/user"
             element={[<Header />, <Menu />, <Body />]}

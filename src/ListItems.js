@@ -1,21 +1,18 @@
 import React from "react";
 import "./ListItems.css";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useStateValue } from "./StateProvider";
 import { db } from "./firebase";
 
 function ListItems({ item, id, listItem, priority, dueDate }) {
-  const [{dataList}, dispatch] = useStateValue();
+  // const [{ dataList }, dispatch] = useStateValue();
 
   const removeFromList = () => {
     const listRef = db.ref("Lists").child(item.id);
     listRef.remove();
-    dispatch({
-      type: 'REMOVE_FROM_LIST',
-      id:id
-
-    });
-  }
+  
+    window.location.reload();
+  };
   return (
     <div className="listItems">
       <h4>
@@ -34,9 +31,14 @@ function ListItems({ item, id, listItem, priority, dueDate }) {
               <p>⭐</p>
             ))}
           <p className="listItem__dueDate">Due by: {dueDate}</p>
-          <DeleteForeverIcon className="listItem__delete" onClick={removeFromList}/>
+          <DeleteForeverIcon
+            className="listItem__delete"
+            onClick={removeFromList}
+          />
         </div>
-        <p>Id:<strong>{id}</strong></p>
+        <p>
+          Id:<strong>{id}</strong>
+        </p>
       </small>
     </div>
   );

@@ -1,0 +1,17 @@
+.newList {
+  margin-top: 20px;
+}
+.newList__text {
+    margin-top: 5px;
+  width: 250px;
+  padding: 2px;
+}
+
+.newList > form > button {
+    margin-left: 5px;
+    padding: 2px;
+  background: rgb(1, 145, 218);
+  color: white;
+}
+
+

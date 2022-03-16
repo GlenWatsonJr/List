@@ -3,26 +3,25 @@ import { useForm } from "react-hook-form";
 import { useStateValue } from "./StateProvider";
 import "./Form.css";
 import { db } from "./firebase";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
 
-function Form() {
+
+function Form({listName}) {
   const [{ dataList, user }, dispatch] = useStateValue();
   const { register, handleSubmit } = useForm();
   const listRef = db.ref();
-
+  
 
   const onSubmit = (data) => {
     const id = Date.now();
     data["id"] = id;
     data["user"] = user.email;
     data["completed"] = false;
+    data["listName"] = {listName};
+
     listRef.child("Lists").child(id).set(data);
-    dispatch({
-      type: "ADD_TO_LIST",
-      item: data,
-    });
-    dispatch({
-      type: "SORT_LIST",
-    });
+
+    window.location.reload();
   };
 
   return (
@@ -46,7 +45,7 @@ function Form() {
 
         <label className="itemForm__dueDate">Due Date: </label>
         <input type="date" {...register("listDueDate")} />
-  
+
         <button className="form__button">Add</button>
       </form>
     </div>

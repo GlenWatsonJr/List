@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./List.css";
 import ListItems from "./ListItems";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -6,48 +7,55 @@ import Form from "./Form";
 import { useStateValue } from "./StateProvider";
 import { useDisplay, useDisplayToggle } from "./DisplayContext";
 
-function List() {
+
+function List({ id, listName }) {
   //for sending the data to the datalayer
   const [{ dataList, user }, dispatch] = useStateValue();
-
- 
-  console.log(dataList);
-
   //hooks for displaying and hiding the form
-  const display = useDisplay();
-  const toggleDisplay = useDisplayToggle();
+  
+  const [display, setDisplay] = useState(false);
 
+  const isDisplayed = () => {setDisplay(!display)};
+   
+
+  
   return (
     <div className="list">
       {/* TODO
       Change list title */}
-      <h2>To Do List</h2>
-      
+      <h2>{listName}</h2>
 
-      {dataList.map((item) => (
-      
-        <ListItems
-        item={item}
-        id={item.id}
-        listItem={item.listItem}
-        priority={Number(item.listPriority)}
-        dueDate={item.listDueDate}
-      />
-             
-      ))}
+      {dataList
+        .filter((item) => item.user == user.email)
+        .filter((item) => item.listName.listName == listName)
+        .sort((a, b) => b.listPriority - a.listPriority)
+        .map((item) => (
+          <ListItems
+            item={item}
+            id={item.id}
+            listItem={item.listItem}
+            priority={Number(item.listPriority)}
+            dueDate={item.listDueDate}
+          />
+        ))}
 
       <div className="list__add">
         {display ? (
           <IndeterminateCheckBoxIcon
-            onClick={toggleDisplay}
+            onClick={isDisplayed}
             className="list__minusIcon"
           />
         ) : (
-          <AddBoxIcon onClick={toggleDisplay} className="list__addIcon" />
+          <AddBoxIcon
+            onClick={isDisplayed}
+            className="list__addIcon"
+          />
         )}
       </div>
 
-      <div className="itemForm">{display ? <Form /> : null}</div>
+      <div className="itemForm">
+        {display ? <Form listName={listName} /> : null}
+      </div>
     </div>
   );
 }

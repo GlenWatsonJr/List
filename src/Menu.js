@@ -15,12 +15,17 @@ function Menu() {
       navigate("/");
     }
   };
+  const newList =() => {
+    navigate("/new");
+  };
   return (
     <div className="menu">
-      Menu
-      <button onClick={handleSignOut}>Sign Out</button>
-      <button>Create new list</button>
+      <h3>Menu</h3>
+      <button onClick={newList}>Create new list</button>
       <button>Publish List</button>
+      <hr />
+      <button className='menu__signout' onClick={handleSignOut}>Sign Out</button>
+      
     </div>
   );
 }
