@@ -4,19 +4,39 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useStateValue } from "./StateProvider";
 import { db } from "./firebase";
 
-function ListItems({ item, id, listItem, priority, dueDate }) {
-  // const [{ dataList }, dispatch] = useStateValue();
+function ListItems({ item, id, listItem, priority, dueDate, user, listName}) {
+  const [{ dataList }, dispatch] = useStateValue();
+
+  const listRef = db.ref("Lists").child(item.id);
+  const completeRef = db.ref("Complete").child(item.id)
 
   const removeFromList = () => {
-    const listRef = db.ref("Lists").child(item.id);
+    
     listRef.remove();
   
     window.location.reload();
   };
+
+  const moveToComplete = () => {
+    
+    const data = {
+      id: id,
+      listItem: listItem,
+      user: user,
+      listName: listName
+    }
+    completeRef.set(data);
+    
+    listRef.remove();
+
+   
+    window.location.reload();
+  }
+
   return (
     <div className="listItems">
       <h4>
-        <input type="checkbox" name="checkbox" />
+        <input type="checkbox" name="checkbox" onClick={moveToComplete} />
         <label key={id} className="listItem__label">
           {listItem}
         </label>

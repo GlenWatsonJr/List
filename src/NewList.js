@@ -9,13 +9,15 @@ function NewList() {
     const { register, handleSubmit } = useForm();
     const [{user}] = useStateValue();
     const navigate = useNavigate();
-    const listRef = db.ref();
+    const listRef = db.ref("ListName")
+    
 
     const onSubmit = (data) => {
+       
         const id = Date.now();
         data["id"] = id;
         data["user"] = user.email;
-        listRef.child("ListNames").child(id).set(data);
+        listRef.child(data.id).set(data);
         navigate('/');
         window.location.reload();
     }

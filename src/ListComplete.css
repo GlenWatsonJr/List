@@ -1,0 +1,21 @@
+
+  .listComplete {
+    margin-bottom: 15px;
+    border-bottom-style: solid;
+    border-color: lightgrey;
+    border-width: 1px;
+    display: flex;
+  }
+  
+  .listComplete > h4 {
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+
+  .listComplete__delete{
+    position: absolute;
+    right: 20%;
+    color: rgb(1, 145, 218);
+  }
+  
+

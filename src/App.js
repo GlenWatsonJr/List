@@ -24,7 +24,10 @@ function App() {
 
   useEffect(() => { 
     const listRef = db.ref("Lists");
-    const listNameRef = db.ref("ListNames");
+    const listNameRef = db.ref("ListName");
+    const completeRef = db.ref("Complete")
+   
+
 
     listRef.on("value", (snapshot) => {
       const lists = snapshot.val();
@@ -46,6 +49,17 @@ function App() {
       }
     });
 
+    completeRef.on("value", (snapshot) => {
+      const completeItems = snapshot.val();
+      for (let element in completeItems) {
+        dispatch({
+          type: "CREATE_COMPLETE_LIST",
+          item: completeItems[element],
+        });
+      }
+    });
+
+  
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({

@@ -22,7 +22,7 @@ function Menu() {
     <div className="menu">
       <h3>Menu</h3>
       <button onClick={newList}>Create new list</button>
-      <button>Publish List</button>
+      {/* <button>Publish List</button> */}
       <hr />
       <button className='menu__signout' onClick={handleSignOut}>Sign Out</button>
       
