@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
 import "./Login.css";
 
+
+//component for the login page
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");

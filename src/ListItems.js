@@ -4,6 +4,8 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useStateValue } from "./StateProvider";
 import { db } from "./firebase";
 
+
+//Component for displaying each non-complete item and the remove function 
 function ListItems({ item, id, listItem, priority, dueDate, user, listName}) {
   const [{ dataList }, dispatch] = useStateValue();
 
@@ -14,7 +16,7 @@ function ListItems({ item, id, listItem, priority, dueDate, user, listName}) {
     
     listRef.remove();
   
-    window.location.reload();
+    window.location.reload(false);
   };
 
   const moveToComplete = () => {

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 
+
+
 const DisplayContext = React.createContext();
 const DisplayUpdate = React.createContext();
 
@@ -8,6 +10,7 @@ export function useDisplay() {
 }
 
 export function useDisplayToggle() {
+  
   return useContext(DisplayUpdate);
 }
 
@@ -17,6 +20,7 @@ export function DisplayProvider({ children }) {
   function toggleDisplay() {
     isDisplayed((previousDisplay) => !previousDisplay);
   }
+
 
   return (
     <DisplayContext.Provider value={display}>

@@ -3,7 +3,7 @@ import Header from "./Header";
 import Welcome from "./Welcome";
 import Login from "./Login";
 import Register from "./Register";
-import Body from "./Body";
+import Body, { refresh } from "./Body";
 import Menu from "./Menu";
 import {
   BrowserRouter as Router,
@@ -15,20 +15,26 @@ import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { db } from "./firebase";
 import NewList from "./NewList";
+import Publish from "./Publish";
 
 
-//This divides the elements into paths
+
 function App() {
-  const [{dataList, lists}, dispatch] = useStateValue();
+
+  //custom hook on how to display values found in Reducer.js/StateProvider.js
+  const [{dataList, lists, user}, dispatch] = useStateValue();
 
 
   useEffect(() => { 
+
+    //references to the location of the items in the database
     const listRef = db.ref("Lists");
     const listNameRef = db.ref("ListName");
     const completeRef = db.ref("Complete")
    
 
 
+    //loads the list items from database that are not complete
     listRef.on("value", (snapshot) => {
       const lists = snapshot.val();
       for (let element in lists) {
@@ -39,6 +45,7 @@ function App() {
       }
     });
 
+      //loads the lists names from database
     listNameRef.on("value", (snapshot) => {
       const listNames = snapshot.val();
       for (let element in listNames) {
@@ -49,6 +56,7 @@ function App() {
       }
     });
 
+    //loads complete items from database
     completeRef.on("value", (snapshot) => {
       const completeItems = snapshot.val();
       for (let element in completeItems) {
@@ -59,7 +67,7 @@ function App() {
       }
     });
 
-  
+    //authentication code for users
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({
@@ -73,22 +81,29 @@ function App() {
         });
       }
     });
-
+    
   
   }, []);
+
+
+
 
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/create" element={<Register />}></Route>
-          <Route path="/new" element={[<Header />, <Menu />, <NewList />]}></Route>
-          <Route
+      {/* This divides the elements into paths */}
+          <Route path="/login" element={<Login />}></Route> {/* Sign In page */}
+          <Route path="/publish" element={<Publish/>}></Route>  {/* Publish page Not In Use ATM */}
+          <Route path="/create" element={<Register />}></Route>  {/* Create new User Page */}
+          <Route path="/new" element={[<Header />, <Menu />, <NewList />]}></Route>  {/* Create new List */}
+          
+          {/* <Route
             path="/user"
-            element={[<Header />, <Menu />, <Body />]}
-          ></Route>
-          <Route path="*" element={[<Header />, <Welcome />]}></Route>
+            element={[<Header />, <Menu />, <Body />]} 
+          ></Route> logged In route */}
+
+          <Route path="*" element={[<Header />, <Welcome />]}></Route>  {/* This divides the elements into paths */}
         </Routes>
       </div>
     </Router>

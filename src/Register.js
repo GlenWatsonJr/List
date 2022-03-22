@@ -3,6 +3,8 @@ import { Link, useNavigate} from 'react-router-dom';
 import { auth } from './firebase';
 import "./Register.css";
 
+
+//the component for creating a new user
 function Register() {
 
     const navigate = useNavigate();
@@ -14,7 +16,7 @@ function Register() {
       auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log(auth);
+     
         if (auth) {
           navigate("/");
         }

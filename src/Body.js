@@ -5,9 +5,10 @@ import { DisplayProvider } from "./DisplayContext";
 import { useStateValue } from "./StateProvider";
 
 
-//This is where the lists are displayed.
+//This is the component that holds the list component which are displayed when Logged In.
 function Body() {
   const [{ lists, user }] = useStateValue();
+  
 
   return (
     <div className="body">

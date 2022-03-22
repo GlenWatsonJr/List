@@ -1,10 +1,12 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { db } from './firebase';
+import { db, generateRandomString } from './firebase';
 import './NewList.css'
 import { useStateValue } from './StateProvider';
 
+
+//This compoenet is a form for creating new lists.
 function NewList() {
     const { register, handleSubmit } = useForm();
     const [{user}] = useStateValue();
@@ -17,9 +19,10 @@ function NewList() {
         const id = Date.now();
         data["id"] = id;
         data["user"] = user.email;
+        data["url"] = generateRandomString;
         listRef.child(data.id).set(data);
         navigate('/');
-        window.location.reload();
+        window.location.reload(false);
     }
 
   return (

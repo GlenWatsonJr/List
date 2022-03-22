@@ -10,13 +10,11 @@ import ListComplete from "./ListComplete";
 import { db } from "./firebase";
 
 
-
+// This is the component that holds the items in the ListItem component and the Form Component.
 function List({ id, listName }) {
   //for sending the data to the datalayer
   const [{ dataList, user, completeList }, dispatch] = useStateValue();
   //hooks for displaying and hiding the form
-  console.log(completeList);
-  
   const [display, setDisplay] = useState(false);
   const isDisplayed = () => {setDisplay(!display)};
 
@@ -25,7 +23,7 @@ function List({ id, listName }) {
   const removeList = () => {
     listRef.remove();
   
-    window.location.reload();
+    window.location.reload(false)
   }
  
   
@@ -33,8 +31,7 @@ function List({ id, listName }) {
     <div className="list">
       {/* TODO
       Change list title */}
-      <h2>{listName} <snall><CancelPresentationIcon className='list__cancel'onClick={removeList}/></snall></h2>
-     
+      <h2>{listName} <CancelPresentationIcon className='list__cancel'onClick={removeList}/></h2>
 
       {dataList
         .filter((item) => item.user == user.email)
@@ -53,6 +50,7 @@ function List({ id, listName }) {
           />
         ))}
 
+        {/* For displaying and hiding the form */}
 
       <div className="list__add">
         {display ? (

@@ -1,4 +1,4 @@
-.list{
+.list {
   margin-bottom: 50px;
 }
 .list > h2 {
@@ -24,12 +24,11 @@
   color: rgb(1, 145, 218);
 }
 
-.list__completed > h3{
+.list__completed > h3 {
   padding-left: 30px;
   padding-bottom: 10px;
 }
 
-.list__cancel{
-  font-size:small;
+.list__cancel {
   color: rgb(255, 0, 0);
 }

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 
 
-//Displays logo and setups up user profile settings
+//Header component that displays logo and who is logged in.
 function Header() {
   const[{user}, dispatch] = useStateValue();
 

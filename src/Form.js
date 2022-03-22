@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { useStateValue } from "./StateProvider";
 import "./Form.css";
 import { db } from "./firebase";
-import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
 
 
+//This is the Form component underneath the list after clicking the + box
 function Form({listName}) {
   const [{ dataList, user }, dispatch] = useStateValue();
   const { register, handleSubmit } = useForm();
@@ -21,7 +21,7 @@ function Form({listName}) {
 
     listRef.child("Lists").child(id).set(data);
 
-    window.location.reload();
+    window.location.reload(false);
   };
 
   return (

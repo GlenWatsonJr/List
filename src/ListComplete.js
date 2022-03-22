@@ -5,6 +5,7 @@ import { useStateValue } from "./StateProvider";
 import { db } from "./firebase";
 import './ListComplete.css'
 
+//Component for displaying each complete item and the remove function 
 function ListComplete({ item, id, listItem}) {
   const [{ dataList }, dispatch] = useStateValue();
 
@@ -12,7 +13,7 @@ function ListComplete({ item, id, listItem}) {
     const listRef = db.ref("Complete").child(item.id);
     listRef.remove();
   
-    window.location.reload();
+    window.location.reload(false);
   };
 
   return (
