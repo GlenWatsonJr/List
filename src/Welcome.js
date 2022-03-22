@@ -4,6 +4,8 @@ import "./Welcome.css";
 import Menu from "./Menu";
 import Body from "./Body";
 
+//front page component.
+
 function Welcome() {
   const [{user}, dispatch] = useStateValue();
 

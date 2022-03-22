@@ -1,6 +1,6 @@
 # ListsProject
 
-Warning very current work in progress:  https://lists-d45b9.web.app/
+Current work in progress: https://lists-d45b9.web.app/
 
 This is my capstone project for my Launchcode boot camp using React and Firebase.
 
